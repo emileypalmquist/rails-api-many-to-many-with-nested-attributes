@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
+    # params.require(:user).permit(:username, :gear_ids => [])
     params.require(:user).permit(:username, gear_ids: [])
   end
 

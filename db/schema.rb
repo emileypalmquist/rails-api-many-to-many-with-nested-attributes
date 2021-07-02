@@ -10,11 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_204816) do
+ActiveRecord::Schema.define(version: 2021_07_02_172548) do
 
   create_table "gears", force: :cascade do |t|
     t.string "name"
     t.integer "make_year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "trip_gears", force: :cascade do |t|
+    t.integer "trip_id", null: false
+    t.integer "gear_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gear_id"], name: "index_trip_gears_on_gear_id"
+    t.index ["trip_id"], name: "index_trip_gears_on_trip_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.string "location"
+    t.text "details"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -34,6 +50,8 @@ ActiveRecord::Schema.define(version: 2021_07_01_204816) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "trip_gears", "gears"
+  add_foreign_key "trip_gears", "trips"
   add_foreign_key "user_gears", "gears"
   add_foreign_key "user_gears", "users"
 end

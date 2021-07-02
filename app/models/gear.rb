@@ -2,15 +2,24 @@ class Gear < ApplicationRecord
   has_many :user_gears, dependent: :destroy
   has_many :users, through: :user_gears
 
-  def self.all_formatted
-    all.map do |gear|
-      {
-        id: gear.id,
-        name: gear.name,
-        make_year: gear.make_year,
-        status: gear.status
-      }
-    end
+  has_many :trip_gears, dependent: :destroy
+  has_many :trips, through: :trip_gears
+
+  # def self.all_formatted
+  #   all.map do |gear|
+  #     {
+  #       id: gear.id,
+  #       name: gear.name,
+  #       make_year: gear.make_year,
+  #       status: gear.status
+  #     }
+  #   end
+  # end
+
+  def self.all_okay
+    # all.filter
+    # filter gears with status okay
+    []
   end
 
   def status
@@ -19,5 +28,9 @@ class Gear < ApplicationRecord
     else
       "Okay"
     end
+  end
+
+  def say_hello
+    "hello"
   end
 end

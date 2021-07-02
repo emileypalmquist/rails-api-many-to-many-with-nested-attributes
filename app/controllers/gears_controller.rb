@@ -2,12 +2,12 @@ class GearsController < ApplicationController
 
   def index
     gears = Gear.all
-    render json: gears
+    render json: gears, methods: [:status]
   end
 
   def check_gear_status
-    gears = Gear.all_formatted
-    render json: gears
+    gears = Gear.all
+    render json: gears, methods: [:status]
   end
 
 end
