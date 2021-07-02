@@ -16,12 +16,6 @@ class Gear < ApplicationRecord
   #   end
   # end
 
-  def self.all_okay
-    # all.filter
-    # filter gears with status okay
-    []
-  end
-
   def status
     if Date.today.year - make_year > 10
       "Consider replacing"
@@ -30,7 +24,4 @@ class Gear < ApplicationRecord
     end
   end
 
-  def say_hello
-    "hello"
-  end
 end
